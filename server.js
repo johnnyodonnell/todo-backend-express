@@ -22,6 +22,12 @@ var todos = backend(process.env.DATABASE_URL);
 function createCallback(res, onSuccess) {
   return function callback(err, data) {
     if (err || !data) {
+      if (err) {
+          console.log(err);
+      } else {
+          console.log("No data!");
+      }
+
       res.send(500, 'Something bad happened!');
       return;
     }
@@ -82,3 +88,5 @@ app.delete('/:id', function(req, res) {
 });
 
 app.listen(Number(process.env.PORT || 5000));
+console.log("Listening now...");
+
